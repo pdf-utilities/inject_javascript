@@ -248,7 +248,7 @@ The `--escape` command-line option will _double-down_ on backslashes (`\`), for 
 
 
 ```JavaScript
-if (typeof(app) !== 'undefined') {
+if (typeof app !== 'undefined') {
   var script_context = 'pdf';
 } else {
   var script_context = 'browser';
@@ -266,11 +266,7 @@ if (script_context === 'pdf') {
 
 
 ```JavaScript
-if (typeof(app) !== 'undefined') {
-  var script_context = 'pdf';
-} else {
-  var script_context = 'browser';
-};
+var script_context = typeof app !== 'undefined' ? 'pdf' : 'browser';
 
 if (script_context === 'pdf') {
   window.alert('Script context is -> PDF\\nExpect features to be limited.');
