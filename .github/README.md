@@ -78,35 +78,34 @@ ___
   #quick-start
   "&#9889; Perhaps as easy as one, 2.0,..."
 
-Clone this project...
 
-
-**Linux/MacOS**
+This repository makes use of Git Submodules to track dependencies, to avoid incomplete downloads clone with the `--recurse-submodules` option...
 
 
 ```Bash
-mkdir -vp ~/git/hub/pdf-utilities
-
-cd ~/git/hub/pdf-utilities
-
-git clone git@github.com:pdf-utilities/inject_javascript.git
+git clone --recurse-submodules git@github.com:{{ organization }}/{{ repository }}.git
 ```
 
 
-**Windows**
+To update tracked Git Submodules issue the following commands...
 
 
-```Batch
-set _organization_directory="%HOMEDRIVE%%HOMEPATH%\git\hub\pdf-utilities"
+```Bash
+git pull
 
-if not exists %_organization_directory (
-  md %_organization_directory
-)
-
-CD /D %_organization_directory
-
-git clone git@github.com:pdf-utilities/inject_javascript.git
+git submodule update --init --merge --recursive
 ```
+
+
+To force upgrade of Git Submodules...
+
+
+```Bash
+git submodule update --init --merge --recursive --remote
+```
+
+
+> Note, forcing and update of Git Submodule tracked dependencies may cause instabilities and/or merge conflicts; if however everything operates as expected after an update please consider submitting a Pull Request.
 
 
 ------
