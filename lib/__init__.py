@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 ## From standard libraries
 from os import fdopen as os_fdopen
 from os import remove as os_remove
@@ -35,7 +36,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 
-class inject_javascript(object):
+class Inject_Javascript(object):
     """Injects some JavaScript into the PDF."""
 
     def __init__(self, clobber = False, escape = False, verbose = 0):

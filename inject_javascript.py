@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 
 
+if __name__ != '__main__':
+    raise Exception("args")
+
+
 from argparse import ArgumentParser
-from lib import inject_javascript
 from os.path import basename
 from sys import argv
+from time import sleep
+
+from lib import Inject_Javascript
+from lib.modules.watch_path import Watch_Path
 
 
 __license__ = """
@@ -25,51 +32,78 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 
-if __name__ == '__main__':
-    ## Command line argument parsing only if being called as a script
+def js_updated_callback(**kwargs):
+    """
+    Function called by `Watch_File` when JavaScript modified time changes
+    """
+    # time_stamp = kwargs['time_stamp']
+    return kwargs['injector'].inject_pdf_with_javascript(pdf_path = kwargs['pdf_path'],
+                                                         js_path = kwargs['file_path'],
+                                                         save_path = kwargs['save_path'])
 
-    arg_parser = ArgumentParser(
-        prog = basename(argv[0]),
-        usage = '%(prog)s --pdf "/tmp/boring.pdf" --js "/dir/script.js"',
-        epilog = 'For more projects see: https://github.com/S0AndS0')
 
-    arg_parser.add_argument('--pdf-path', '--pdf',
-                            help = 'Out path to save PDF',
-                            required = True)
+arg_parser = ArgumentParser(
+    prog = basename(argv[0]),
+    usage = '%(prog)s --pdf "/tmp/boring.pdf" --js "/dir/script.js"',
+    epilog = 'For more projects see: https://github.com/S0AndS0')
 
-    arg_parser.add_argument('--js-path', '--js',
-                            help = 'JavaScript to inject into downloaded PDF',
-                            required = True)
+arg_parser.add_argument('--pdf-path', '--pdf',
+                        help = 'Out path to save PDF',
+                        required = True)
 
-    arg_parser.add_argument('--save-path',
-                            help = 'Optional path to save enhanced PDF to, ignored if clobber is True',
-                            required = True)
+arg_parser.add_argument('--js-path', '--js',
+                        help = 'JavaScript to inject into downloaded PDF',
+                        required = True)
 
-    arg_parser.add_argument('--escape',
-                            help = 'Prevent replacing/escaping of specific character combos',
-                            action = 'store_true',
-                            default = False)
+arg_parser.add_argument('--save-path',
+                        help = 'Optional path to save enhanced PDF to, ignored if clobber is True',
+                        required = True)
 
-    arg_parser.add_argument('--clobber',
-                            help = 'Overwrite preexisting/input PDF',
-                            action = 'store_true',
-                            default = False)
+arg_parser.add_argument('--escape',
+                        help = 'Prevent replacing/escaping of specific character combos',
+                        action = 'store_true',
+                        default = False)
 
-    arg_parser.add_argument('--verbose', '-v',
-                            help = 'Loudness of this script',
-                            action = 'count')
+arg_parser.add_argument('--clobber',
+                        help = 'Overwrite preexisting/input PDF',
+                        action = 'store_true',
+                        default = False)
 
-    verbose = arg_parser.parse_known_args()[0].verbose
-    args = vars(arg_parser.parse_args())
+arg_parser.add_argument('--watch',
+                        help = 'Watch JavaScript file for changes',
+                        action = 'store_true',
+                        default = False)
 
-    ## Use provided command line options
-    injector = inject_javascript(clobber = args.get('clobber'),
-                                 escape = args.get('escape'),
-                                 verbose = verbose)
+arg_parser.add_argument('--verbose', '-v',
+                        help = 'Loudness of this script',
+                        action = 'count')
 
-    injected = injector.inject_pdf_with_javascript(pdf_path = args.get('pdf_path'),
-                                                   js_path = args.get('js_path'),
-                                                   save_path = args.get('save_path'))
+verbose = arg_parser.parse_known_args()[0].verbose
+args = vars(arg_parser.parse_args())
 
-    if verbose > 0:
-        print('Enhanced file maybe found at: {0}'.format(injected))
+
+## Use provided command line options
+injector = Inject_Javascript(clobber = args.get('clobber'),
+                             escape = args.get('escape'),
+                             verbose = verbose)
+
+injected = injector.inject_pdf_with_javascript(pdf_path = args.get('pdf_path'),
+                                               js_path = args.get('js_path'),
+                                               save_path = args.get('save_path'))
+
+
+if verbose > 0:
+    print('Enhanced file maybe found at: {0}'.format(injected))
+
+
+if args.get('watch') is True:
+    path_watcher = Watch_Path(file_path = args.get('js_path'),
+                              callback = js_updated_callback,
+                              injector = injector,
+                              pdf_path = args.get('pdf_path'),
+                              save_path = args.get('save_path'))
+
+    for callback_results in path_watcher:
+        if verbose > 0:
+            print("Updated file enhancments at: {}".format(callback_results))
+        sleep(1)
