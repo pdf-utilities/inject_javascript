@@ -148,7 +148,7 @@ git clone git@github.com:pdf-utilities/inject_javascript.git
 ------
 
 
-Example of inheriting and modifying the `inject_javascript` class...
+Example of inheriting and modifying the `Inject_JavaScript` class...
 
 
 ```Python
@@ -158,20 +158,20 @@ Example of inheriting and modifying the `inject_javascript` class...
 from argparse import ArgumentParser
 
 
-from inject_javascript import inject_javascript
+from inject_javascript import Inject_JavaScript
 from lib.notice import error
 
 
-class Customized_inject_javascript(inject_javascript):
+class Customized_Inject_JavaScript(Inject_JavaScript):
     """
-    Customizes inject_javascript class
+    Customizes Inject_JavaScript class
     """
 
     def return_js_data(self, js_path = None):
         """
         Customizes how JavaScript data is processed prior to returning
         """
-        js_data = super(Customized_inject_javascript, self).return_js_data(js_path = js_path)
+        js_data = super(Customized_Inject_JavaScript, self).return_js_data(js_path = js_path)
 
         return js_data
 

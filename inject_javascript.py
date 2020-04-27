@@ -10,7 +10,7 @@ from os.path import basename
 from sys import argv
 from time import sleep
 
-from lib import Inject_Javascript
+from lib import Inject_JavaScript
 from lib.modules.watch_path import Watch_Path
 
 
@@ -83,7 +83,7 @@ args = vars(arg_parser.parse_args())
 
 
 ## Use provided command line options
-injector = Inject_Javascript(clobber = args.get('clobber'),
+injector = Inject_JavaScript(clobber = args.get('clobber'),
                              escape = args.get('escape'),
                              verbose = verbose)
 

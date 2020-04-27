@@ -36,7 +36,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 
-class Inject_Javascript(object):
+class Inject_JavaScript(object):
     """Injects some JavaScript into the PDF."""
 
     def __init__(self, clobber = False, escape = False, verbose = 0):
