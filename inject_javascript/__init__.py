@@ -6,7 +6,7 @@ from os.path import basename
 from sys import argv
 from time import sleep
 
-from lib import Inject_JavaScript
+from inject_javascript.lib import Inject_JavaScript
 from lib.modules.watch_path import Watch_Path
 
 
