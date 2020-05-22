@@ -100,7 +100,7 @@ pip3 install --user --upgrade inject-javascript
 
 
 ```Bash
-inject_javascript --help
+inject-pdf-javascript --help
 ```
 
 
@@ -108,7 +108,7 @@ inject_javascript --help
 
 
 ```Bash
-inject_javascript --js index.js\
+inject-pdf-javascript --js index.js\
  --pdf document.pdf\
  --save-path enhanced.pdf\
  --escape
@@ -119,7 +119,7 @@ inject_javascript --js index.js\
 
 
 ```Bash
-inject_javascript --js index.js\
+inject-pdf-javascript --js index.js\
  --pdf document.pdf\
  --escape\
  --clobber
@@ -332,6 +332,8 @@ ___
 - [Mozilla Developer -- `New in JavaScript 1.5`](https://developer.mozilla.org/en-US/docs/Archive/Web/JavaScript/New_in_JavaScript/1.5)
 
 - [TypeScript -- `Compiler Options`](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+
+- [YouTube -- Omar Rizwan (@rsnous)](https://www.youtube.com/watch?v=QEZ0N0rrbL0&t=3h59m)
 
 
 
