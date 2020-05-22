@@ -79,33 +79,12 @@ ___
   "&#9889; Perhaps as easy as one, 2.0,..."
 
 
-This repository makes use of Git Submodules to track dependencies, to avoid incomplete downloads clone with the `--recurse-submodules` option...
+Please use Pip to install dependencies...
 
 
 ```Bash
-git clone --recurse-submodules git@github.com:{{ organization }}/{{ repository }}.git
+pip3 install --user --upgrade -r requirements.txt
 ```
-
-
-To update tracked Git Submodules issue the following commands...
-
-
-```Bash
-git pull
-
-git submodule update --init --merge --recursive
-```
-
-
-To force upgrade of Git Submodules...
-
-
-```Bash
-git submodule update --init --merge --recursive --remote
-```
-
-
-> Note, forcing and update of Git Submodule tracked dependencies may cause instabilities and/or merge conflicts; if however everything operates as expected after an update please consider submitting a Pull Request.
 
 
 ------
