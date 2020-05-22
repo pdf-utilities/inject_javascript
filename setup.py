@@ -18,6 +18,10 @@ setup(
     long_description_content_type = "text/markdown",
     url = "https://github.com/pdf-utilities/inject_javascript",
     packages = find_packages(),
+    install_requires = [
+        'PyPDF2',
+        'watch-path',
+    ],
     entry_points = {
         'console_scripts': [
             'inject_javascript = inject_javascript:main'
