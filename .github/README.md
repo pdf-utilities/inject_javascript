@@ -35,6 +35,9 @@ ___
   "&#x1F3D7; Prerequisites and/or dependencies that this project needs to function properly"
 
 
+> Note, the following steps are **not** required if installing this project via Pip.
+
+
 Python version 3 based dependencies may be installed via one of the following methods...
 
 
@@ -79,11 +82,11 @@ ___
   "&#9889; Perhaps as easy as one, 2.0,..."
 
 
-Please use Pip to install dependencies...
+Install this project via Pip
 
 
 ```Bash
-pip3 install --user --upgrade -r requirements.txt
+pip3 install --user --upgrade inject-javascript
 ```
 
 
@@ -97,7 +100,7 @@ pip3 install --user --upgrade -r requirements.txt
 
 
 ```Bash
-./inject_javascript.py --help
+inject_javascript --help
 ```
 
 
@@ -105,7 +108,7 @@ pip3 install --user --upgrade -r requirements.txt
 
 
 ```Bash
-./inject_javascript.py --js index.js\
+inject_javascript --js index.js\
  --pdf document.pdf\
  --save-path enhanced.pdf\
  --escape
@@ -116,7 +119,7 @@ pip3 install --user --upgrade -r requirements.txt
 
 
 ```Bash
-./inject_javascript.py --js index.js\
+inject_javascript --js index.js\
  --pdf document.pdf\
  --escape\
  --clobber
@@ -136,8 +139,8 @@ Example of inheriting and modifying the `Inject_JavaScript` class...
 from argparse import ArgumentParser
 
 
-from inject_javascript import Inject_JavaScript
-from lib.notice import error
+from inject_javascript.lib import Inject_JavaScript
+from inject_javascript.lib.notice import error
 
 
 class Customized_Inject_JavaScript(Inject_JavaScript):
