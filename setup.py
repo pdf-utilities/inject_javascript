@@ -24,7 +24,7 @@ setup(
     ],
     entry_points = {
         'console_scripts': [
-            'inject-pdf-javascript = inject_javascript:main'
+            'inject-pdf-javascript = inject_javascript.cli:main'
         ],
     },
     classifiers = [
