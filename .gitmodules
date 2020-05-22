@@ -1,4 +1,0 @@
-[submodule "watch_path"]
-	path = lib/modules/watch_path
-	url = git@github.com:python-utilities/watch_path.git
-	branch = master
