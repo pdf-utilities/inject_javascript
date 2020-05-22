@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 
 
-if __name__ != '__main__':
-    raise Exception("args")
-
-
 from argparse import ArgumentParser
 from os.path import basename
 from sys import argv
@@ -82,28 +78,26 @@ verbose = arg_parser.parse_known_args()[0].verbose
 args = vars(arg_parser.parse_args())
 
 
-## Use provided command line options
-injector = Inject_JavaScript(clobber = args.get('clobber'),
-                             escape = args.get('escape'),
-                             verbose = verbose)
+def main():
+    injector = Inject_JavaScript(clobber = args.get('clobber'),
+                                 escape = args.get('escape'),
+                                 verbose = verbose)
 
-injected = injector.inject_pdf_with_javascript(pdf_path = args.get('pdf_path'),
-                                               js_path = args.get('js_path'),
-                                               save_path = args.get('save_path'))
+    injected = injector.inject_pdf_with_javascript(pdf_path = args.get('pdf_path'),
+                                                   js_path = args.get('js_path'),
+                                                   save_path = args.get('save_path'))
 
+    if verbose > 0:
+        print('Enhanced file maybe found at: {0}'.format(injected))
 
-if verbose > 0:
-    print('Enhanced file maybe found at: {0}'.format(injected))
+    if args.get('watch') is True:
+        path_watcher = Watch_Path(file_path = args.get('js_path'),
+                                  callback = js_updated_callback,
+                                  injector = injector,
+                                  pdf_path = args.get('pdf_path'),
+                                  save_path = args.get('save_path'))
 
-
-if args.get('watch') is True:
-    path_watcher = Watch_Path(file_path = args.get('js_path'),
-                              callback = js_updated_callback,
-                              injector = injector,
-                              pdf_path = args.get('pdf_path'),
-                              save_path = args.get('save_path'))
-
-    for callback_results in path_watcher:
-        if verbose > 0:
-            print("Updated file enhancments at: {}".format(callback_results))
-        sleep(1)
+        for callback_results in path_watcher:
+            if verbose > 0:
+                print("Updated file enhancments at: {}".format(callback_results))
+            sleep(1)
