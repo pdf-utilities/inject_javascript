@@ -15,7 +15,7 @@ from PyPDF2 import PdfFileWriter
 from PyPDF2 import PdfFileReader
 
 ## From internal libraries
-from inject_javascript.lib.notices import notice, error
+from inject_javascript.lib import notice, error
 
 
 __license__ = """
