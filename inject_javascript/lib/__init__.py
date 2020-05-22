@@ -133,4 +133,4 @@ class Inject_JavaScript(object):
 
 
 if __name__ == '__main__':
-    raise Exception('Try importing `inject_javascript` class from a Python script or shell instead')
+    raise Exception('Try importing `Inject_JavaScript` class from a Python script or shell instead')
