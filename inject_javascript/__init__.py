@@ -7,7 +7,7 @@ from sys import argv
 from time import sleep
 
 from inject_javascript.lib import Inject_JavaScript
-from lib.modules.watch_path import Watch_Path
+from watch_path import Watch_Path
 
 
 __license__ = """
