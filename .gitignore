@@ -1,5 +1,10 @@
 node_modules
+
+## Python compiled/cached
 __pycache__
 *.pyc
+
+## Python setuptools
+build
 dist
 inject_javascript.egg-info
