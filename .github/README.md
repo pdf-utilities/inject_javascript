@@ -139,8 +139,8 @@ Example of inheriting and modifying the `Inject_JavaScript` class...
 from argparse import ArgumentParser
 
 
-from inject_javascript.lib import Inject_JavaScript
-from inject_javascript.lib.notice import error
+from inject_javascript import Inject_JavaScript
+from inject_javascript.lib import error
 
 
 class Customized_Inject_JavaScript(Inject_JavaScript):
