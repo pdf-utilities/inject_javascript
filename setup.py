@@ -10,7 +10,7 @@ with open(".github/README.md", "r") as fh:
 
 setup(
     name = "inject_javascript",
-    version = "0.0.6",
+    version = "0.0.7",
     author = "S0AndS0",
     author_email = "StrangerThanBland@gmail.com",
     description = "Inject JavaScript within PDF document body",
