@@ -55,7 +55,7 @@ class Inject_JavaScript(object):
             source_pdf_data = PdfFileReader(fb)
 
         ## Load source PDF into output object
-        for i in xrange(source_pdf_data.getNumPages()):
+        for i in range(source_pdf_data.getNumPages()):
             writable_pdf_data.addPage(source_pdf_data.getPage(i))
 
         if self.verbose > 0:
