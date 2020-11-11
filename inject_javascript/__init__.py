@@ -51,14 +51,12 @@ class Inject_JavaScript(object):
         ## Setup output data object and load source PDF data
         writable_pdf_data = PdfFileWriter()
         with open(pdf_path, 'rb') as fb:
-            # source_pdf_data = PdfFileReader(open(pdf_path, 'rb'))
             source_pdf_data = PdfFileReader(fb)
+            ## Load source PDF into output object
+            for i in range(source_pdf_data.getNumPages()):
+                writable_pdf_data.addPage(source_pdf_data.getPage(i))
 
-        ## Load source PDF into output object
-        for i in range(source_pdf_data.getNumPages()):
-            writable_pdf_data.addPage(source_pdf_data.getPage(i))
-
-        if self.verbose > 0:
+        if self.verbose and self.verbose > 0:
             notice('finished loading data into output object from: {0}'.format(pdf_path))
 
         ## Return output object to calling process
@@ -79,7 +77,7 @@ class Inject_JavaScript(object):
         else:
             message = 'finished loading JavaScript data from: '
 
-        if self.verbose > 0:
+        if self.verbose and self.verbose > 0:
             notice(message + js_path)
 
         return js_data
@@ -113,7 +111,7 @@ class Inject_JavaScript(object):
                 error('Unable to remove temp path: {0}'.format(tmp_path))
 
             if path_exists(save_path) is True:
-                if self.verbose > 0:
+                if self.verbose and self.verbose > 0:
                     notice(message + save_path)
                 return save_path
             else:

@@ -87,7 +87,7 @@ def main():
                                                    js_path = args.get('js_path'),
                                                    save_path = args.get('save_path'))
 
-    if verbose > 0:
+    if verbose and verbose > 0:
         print('Enhanced file maybe found at: {0}'.format(injected))
 
     if args.get('watch') is True:
